@@ -109,7 +109,7 @@ pub fn crypto_kem_dec(ss: &mut [u8], ct: &[u8], sk: &[u8]) -> () {
     hash_g(&mut kr, &buf, 2 * KYBER_SYMBYTES);
 
     // coins are in kr[KYBER_SYMBYTES..]
-    indcpa_enc(&mut cmp, &buf, &pk, &kr[KYBER_SYMBYTES..]);
+    indcpa_dec(&mut cmp, &buf, &pk);
     let fail = verify(ct, &cmp, KYBER_CIPHERTEXTBYTES);
     // overwrite coins in kr with H(c)
     hash_h(&mut kr[KYBER_SYMBYTES..], ct, KYBER_CIPHERTEXTBYTES);
